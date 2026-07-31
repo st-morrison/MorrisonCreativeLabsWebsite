@@ -1,15 +1,12 @@
-import AppRouter from '@/router';
-import NavBar from './components/NavBar';
-import '@/styles/App.css';
+import AppRouter from "@/router";
+import "@/styles/app.css";
 
 function App() {
-
   return (
     <>
-      <NavBar/>
-      <AppRouter/>    
+      <AppRouter />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,0 +1,97 @@
+/* ════════════════════════════════════════════
+   ABOUT PAGE — SCOPED TOKENS
+   (self-contained; remove if you already have
+   these defined globally)
+   ════════════════════════════════════════════ */
+.about-page {
+  --void:          #0D0D0F;
+  --surface:       #141418;
+  --border:        rgba(255, 255, 255, 0.08);
+  --violet:        #7C3AED;
+  --violet-bright: #9F67FF;
+  --cream:         #F5F0E8;
+  --muted:         rgba(245, 240, 232, 0.6);
+  --mono:          'JetBrains Mono', monospace;
+  --sans:          'Inter', sans-serif;
+}
+
+/* ════════════════════════════════════════════
+   LAYOUT
+   ════════════════════════════════════════════ */
+.about-page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 4rem 3rem 6rem;
+  color: var(--cream);
+  font-family: var(--sans);
+}
+
+.about-heading {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Intro row: 60% text / 40% photo ── */
+.about-intro {
+  display: grid;
+  grid-template-columns: 60% 1fr;
+  gap: 3rem;
+  align-items: start;
+  margin-bottom: 3rem;
+}
+
+.about-intro-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-intro-text {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.about-photo-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(124, 58, 237, 0.12);
+}
+
+.about-photo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Full-width paragraphs below ── */
+.about-body p {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.about-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* ════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .about-page { padding: 3rem 1.5rem 4rem; }
+
+  .about-intro {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about-photo-wrap {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
