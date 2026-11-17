@@ -52,7 +52,7 @@ export function TerminalDisplay({
   useEffect(() => {
     if (!scripts.length) return;
 
-    const instanceId = Math.random().toString(36).slice(2, 8);
+    //const instanceId = Math.random().toString(36).slice(2, 8);
     let scriptIdx = 0;
     let lineIdx = 0;
     let charIdx = 0;
@@ -60,7 +60,7 @@ export function TerminalDisplay({
     setRenderedLines([]);
 
     function tick() {
-      console.log("tick", instanceId, { scriptIdx, lineIdx, charIdx });
+      //console.log("tick", instanceId, { scriptIdx, lineIdx, charIdx });
       const currentScript = scripts[scriptIdx];
 
       // Finished this scenario — pause, clear, advance to the next.

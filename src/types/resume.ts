@@ -5,8 +5,8 @@ export interface ResumeHeader {
   careerLength: string;
 }
 
-export interface ResumeObjective {
-  missionStatement: string;
+export interface ResumeSummary {
+  summary: string;
 }
 
 export interface ResumeJob {
@@ -24,8 +24,14 @@ export interface ResumeProject {
 }
 
 export interface ResumeEducation {
-  institution: string;
-  dates: string;
+  cert: string;
+  details: string;
+  detailContext?: string;
+}
+
+export interface ResumeSkill {
+  category: string;
+  skillSet: string;
 }
 
 export interface ResumeContact {
@@ -38,10 +44,11 @@ export interface ResumeContact {
 export interface ResumeModel {
   contact: ResumeContact;
   header: ResumeHeader;
-  objective: ResumeObjective;
+  objective: ResumeSummary;
   experience: ResumeJob[];
   projects: ResumeProject[];
   coreSkills: string[];
   agenticSolutions: string[];
   education: ResumeEducation[];
+  skills: ResumeSkill[];
 }

@@ -1,11 +1,12 @@
 import {
   ResumeHeader,
-  ResumeObjective,
+  ResumeSummary,
   ResumeJob,
   ResumeProject,
   ResumeEducation,
   ResumeContact,
   ResumeModel,
+  ResumeSkill,
 } from "../types/resume";
 
 const header: ResumeHeader = {
@@ -15,9 +16,9 @@ const header: ResumeHeader = {
   careerLength: "since 2018",
 };
 
-const objective: ResumeObjective = {
-  missionStatement:
-    "To find an environment where I can best utilize my tech stack to solve problems, create new functionality, and be a part of a team that's collectively working towards net positive goals for everyone involved.",
+const objective: ResumeSummary = {
+  summary:
+    "Software engineer with 8.5 years of experience building and maintaining all aspects behind business applications, from the data layer to the presentation layer. I've implemented relational schema designs, used T-SQL for maintenance and development, used both C# and the .Net framework to collect and organize data, and both javascript and typescript to present it. I've helped take a custom ERP from design to company-wide rollout with 100% adoption and I know how to turn operationsl data into reliable models and reports using my business-based education and my Google Data Analytics certification. ",
 };
 
 const careerHistory: ResumeJob[] = [
@@ -54,7 +55,10 @@ const careerHistory: ResumeJob[] = [
     role: "Software Engineer",
     company: "Russell Cellular · Springfield, MO",
     dates: "Jan 2018 - July 2019",
-    bullets: [],
+    bullets: [
+      "Re-architected client-side JavaScript sites into server-backed ASP.NET Core applications with Entity Framework Core and SQL Server",
+      "Implemented an external survey text tool that would gather customer service data allowing employees to qualify for performance bonuses",
+    ],
   },
 ];
 
@@ -86,17 +90,48 @@ const skillset = [
   "TypeScript",
   "Node.js",
   "SQL",
-  "Docker / Kibana / Elastic",
-  "Microsoft Azure",
+  "Google Data Analytics Certification",
+  "CI/CD Pipeline",
+  "Microsoft Azure / Dev Ops",
+];
+
+const skills: ResumeSkill[] = [
+  {
+    category: "Software Engineering",
+    skillSet:
+      "C#/.NET, TypeScript, React, JavaScript, Git, and AI-assisted coding tasks such as debugging and code generation",
+  },
+  {
+    category: "Cloud & DevOps",
+    skillSet:
+      "Microsoft Azure (Functions, Key Vault, Blob Storage), Azure DevOps both manual deployments as well as CI/CD pipelines, dev and prod environment management",
+  },
+  {
+    category: "Data Engineering",
+    skillSet:
+      "SQL Server / T-SQL, schema design and data modeling, EF Core migrations, ETL with Azure Functions and Blob Storage, Elasticsearch",
+  },
 ];
 
 const agenticSolutions = [
   "Claude - AI paired programming, technical writing, & general rubber duck sessions",
   "Claude Code - Agentic CLI integrated workflow used to streamline complex coding tasks.",
 ];
+
 const education: ResumeEducation[] = [
-  { institution: "Missouri State University", dates: "2014 - 2018" },
-  { institution: "Ozark Technical College", dates: "2017" },
+  {
+    cert: "Google Data Analytics Professional Certificate",
+    details: "Google/Coursera, 2026",
+  },
+  {
+    cert: "Missouri State University",
+    details: "Coursework toward B.B.A., Computer Information Systems",
+    detailContext: "left to begin a full-time software development role",
+  },
+  {
+    cert: "Certificate in Computer Information Sciences",
+    details: "Ozark Technical College, 2017",
+  },
 ];
 
 const contact: ResumeContact = {
@@ -107,12 +142,13 @@ const contact: ResumeContact = {
 };
 
 export const resumeData: ResumeModel = {
-  contact: contact,
-  header: header,
-  objective: objective,
+  contact,
+  header,
+  objective,
   experience: careerHistory,
   projects: gitLinks,
   coreSkills: skillset,
-  education: education,
-  agenticSolutions: agenticSolutions,
+  education,
+  agenticSolutions,
+  skills,
 };

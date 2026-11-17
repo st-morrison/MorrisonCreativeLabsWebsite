@@ -1,5 +1,5 @@
 import { Document, Page, View, Text, StyleSheet } from "@react-pdf/renderer";
-import { ResumeModel } from "@/types/resume";
+import { ResumeModel } from "../types/resume";
 
 export interface Props {
   resumeData: ResumeModel;
@@ -13,7 +13,29 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   page: { padding: 30 },
+
   bullet: { fontSize: 10, marginBottom: 2 },
+
+  subBulletRow: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    marginLeft: 36, // one standard tab (0.5in = 36pt)
+  },
+
+  hollowBullet: {
+    width: 4,
+    height: 4,
+    borderRadius: 2,
+    borderWidth: 0.75,
+    borderColor: "#000",
+    marginTop: 4, // nudge to line up with the text's x-height; adjust to your font size
+    marginRight: 6,
+  },
+
+  subBulletText: {
+    flex: 1, // long text wraps under itself instead of under the bullet
+    fontSize: 10, // match styles.bullet
+  },
 
   rowSpaceBetween: {
     flexDirection: "row",
@@ -21,21 +43,29 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     padding: 5,
   },
+
   headerColLeft: {
     flexDirection: "column",
   },
+
   headerColRight: {
     flexDirection: "column",
     alignItems: "flex-end",
   },
+
   title: { fontSize: 18, fontWeight: 600 },
+
   subTitle: { fontSize: 16, fontWeight: 400 },
+
   jobTitle: { fontSize: 14, fontWeight: 400 },
+
   subText: { fontSize: 12, color: "#555555" },
+
   twoColRow: {
     flexDirection: "row",
     justifyContent: "space-between",
   },
+
   colHalf: {
     width: "48%",
     flexDirection: "column",
@@ -59,12 +89,23 @@ export function ResumeDocument({ resumeData }: Props) {
         </View>
         <View style={styles.divider} />
 
-        {/* ~~~~~~~~~~ objective ~~~~~~~~~~~~~~ */}
+        {/* ~~~~~~~~~~ summary ~~~~~~~~~~~~~~ */}
         <View>
-          <Text style={styles.subTitle}>Objective</Text>
-          <Text style={styles.bullet}>
-            {resumeData.objective.missionStatement}
-          </Text>
+          <Text style={styles.subTitle}>Summary</Text>
+          <Text style={styles.bullet}>{resumeData.objective.summary}</Text>
+        </View>
+        <View style={styles.divider} />
+
+        {/* ~~~~~~~~~~ skills ~~~~~~~~~~~~~~ */}
+        <View>
+          <Text style={styles.subTitle}>Skills</Text>
+          {resumeData.skills.map((skill, x) => (
+            <View key={x}>
+              <Text style={styles.bullet}>
+                {skill.category}: {skill.skillSet}
+              </Text>
+            </View>
+          ))}
         </View>
         <View style={styles.divider} />
 
@@ -89,8 +130,26 @@ export function ResumeDocument({ resumeData }: Props) {
         </View>
         <View style={styles.divider} />
 
-        {/* ~~~~~~~~~~ projects ~~~~~~~~~~~~~~ */}
+        {/* ~~~~~~~~~~ certifications & education ~~~~~~~~~~~~~~ */}
         <View>
+          <Text style={styles.subTitle}>Education</Text>
+          {resumeData.education.map((edu, x) => (
+            <View key={x}>
+              <Text style={styles.bullet}>
+                • {edu.cert}: {edu.details}
+              </Text>
+              {edu.detailContext && (
+                <View style={styles.subBulletRow}>
+                  <View style={styles.hollowBullet} />
+                  <Text style={styles.subBulletText}>{edu.detailContext}</Text>
+                </View>
+              )}
+            </View>
+          ))}
+        </View>
+
+        {/* ~~~~~~~~~~ projects ~~~~~~~~~~~~~~ */}
+        {/* <View>
           <Text style={styles.subTitle}>Projects</Text>
           {resumeData.projects.map((project, x) => (
             <View key={x}>
@@ -107,39 +166,7 @@ export function ResumeDocument({ resumeData }: Props) {
             </View>
           ))}
         </View>
-        <View style={styles.divider} />
-
-        {/* ~~~~~~~~~~ skillsets & education ~~~~~~~~~~~~~~ */}
-        <View style={styles.twoColRow}>
-          <View style={styles.colHalf}>
-            <Text style={styles.subTitle}>Skillset</Text>
-            {resumeData.coreSkills.map((bullet, x) => (
-              <Text key={x} style={styles.bullet}>
-                • {bullet}
-              </Text>
-            ))}
-          </View>
-
-          <View style={styles.colHalf}>
-            <View>
-              <Text style={styles.subTitle}>Agentic Solutions</Text>
-              {resumeData.agenticSolutions.map((bullet, x) => (
-                <Text key={x} style={styles.bullet}>
-                  • {bullet}
-                </Text>
-              ))}
-            </View>
-
-            <View style={{ marginTop: 8 }}>
-              <Text style={styles.subTitle}>Education</Text>
-              {resumeData.education.map((school, x) => (
-                <Text key={x} style={styles.bullet}>
-                  {school.institution}, {school.dates}
-                </Text>
-              ))}
-            </View>
-          </View>
-        </View>
+        <View style={styles.divider} /> */}
       </Page>
     </Document>
   );

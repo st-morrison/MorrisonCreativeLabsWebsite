@@ -1,5 +1,6 @@
 import "../styles/resumeStyles.css";
 import { ResumeModel } from "../types/resume";
+import personalHeadshot from "../assets/personalHeadshot.jpg";
 
 export interface Props {
   resumeData: ResumeModel;
@@ -14,7 +15,6 @@ export default function Resume({ resumeData }: Props) {
           <div>
             <div className="r-title">{resumeData.header.position}</div>
             <div className="r-name">{resumeData.header.name}</div>
-            <p className="r-tagline">{resumeData.objective.missionStatement}</p>
           </div>
           <div className="r-contact-block">
             {resumeData.contact.email && (
@@ -33,11 +33,22 @@ export default function Resume({ resumeData }: Props) {
             )}
             {resumeData.contact.linkedIn && (
               <div>
-                <a href={resumeData.contact.linkedIn}>LinkedIn</a>
+                <a href={resumeData.contact.linkedIn}>
+                  {resumeData.contact.linkedIn}
+                </a>
               </div>
             )}
             <div>{resumeData.header.location}</div>
           </div>
+          <div className="r-tagline-row">
+            <p className="r-tagline">{resumeData.objective.summary}</p>
+            <img
+              className="r-headshot"
+              src={personalHeadshot}
+              alt={`${resumeData.header.name} headshot`}
+            />
+          </div>
+          {/* <p className="r-tagline">{resumeData.objective.summary}</p> */}
         </div>
         <div className="r-accent-bar" />
 
@@ -100,7 +111,7 @@ export default function Resume({ resumeData }: Props) {
               </ul>
             </div>
 
-            <div className="sidebar-section">
+            {/* <div className="sidebar-section">
               <div className="sidebar-title">Education</div>
               {resumeData.education.map((school, x) => (
                 <div className="edu-item" key={x}>
@@ -108,7 +119,7 @@ export default function Resume({ resumeData }: Props) {
                   <div className="edu-year">{school.dates}</div>
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
